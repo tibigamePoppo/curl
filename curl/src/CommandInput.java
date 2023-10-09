@@ -32,6 +32,26 @@ public class CommandInput {
         }
         else {
             System.out.println("コマンドが入力されました");
+            command.remove("curl");
+            String url = "";
+            for (int i = 0;i < command.size();i++){
+                if(command.get(i).startsWith("http")){
+                    url = command.get(i);
+                    command.remove(url);
+                }
+            }
+            if(url.equals("")){
+                System.out.println("URLが入力されていないので読み込めません");
+            }
+            else {
+                CommandRun commandRun = new CommandRun();
+                commandRun.url = url;
+                for(int i = 0;i < command.size();i++){
+                    commandRun.commandList.add(command.get(i));
+                }
+                commandRun.run();
+            }
+
         }
 
     }
