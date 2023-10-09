@@ -49,6 +49,7 @@ public class CommandInput {
                 for(int i = 0;i < command.size();i++){
                     commandRun.commandList.add(command.get(i));
                 }
+                System.out.println("command = " +command.size() + ":commandList = " + commandRun.commandList.size());
                 commandRun.run();
             }
 
