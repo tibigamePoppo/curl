@@ -7,17 +7,28 @@ public class CommandRun {
     public  void run(){
         Curl curl = new Curl();
         CommandRun commandRun = new CommandRun();
-        if(commandList.size() == 0)
+        if(commandList.isEmpty())
         {
             curl.CurlHttp(url);
         }
         else if(commandList.contains("-o")){
-            String fileName = "";
+            String fileName;
             fileName = commandRun.getFileName(commandList);
             curl.CurlOFile(fileName,url);
         }
         else if(commandList.contains("-v")){
             curl.CurlVHttp(url);
+        }
+        else if(commandList.contains("-d") && commandList.contains("-X") &&commandList.contains("POST"))
+        {
+            String value = "";
+            for (String s : commandList) {
+                if (s.startsWith("\"key=")) {
+                    value = s.split("=")[1];
+                }
+            }
+            value = value.substring(0,value.length()-1);
+            curl.CurlXPostD(url,value);
         }
         else if(commandList.contains("-X") &&commandList.contains("POST"))
         {
