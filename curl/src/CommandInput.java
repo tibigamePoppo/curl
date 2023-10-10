@@ -14,7 +14,7 @@ public class CommandInput {
         System.out.println("キーボードから入力してください");
 
         String str = null;
-        List<String> command = new ArrayList<String>();
+        List<String> command = new ArrayList<>();
         try {
             str = br.readLine();
             String[] tempArray = str.split(" ");
