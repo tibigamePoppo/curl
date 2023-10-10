@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -30,7 +29,7 @@ public class CommandInput {
         {
             System.out.println("コマンドが入力されていません");
         }
-        else {
+        else {  //コマンドが入力されているかの確認
             System.out.println("コマンドが入力されました");
             command.remove("curl");
             String url = "";
@@ -40,16 +39,15 @@ public class CommandInput {
                     command.remove(url);
                 }
             }
-            if(url.equals("")){
+            if(url.isEmpty()){  //URLが入力されているかの確認
                 System.out.println("URLが入力されていないので読み込めません");
             }
             else {
                 CommandRun commandRun = new CommandRun();
-                commandRun.url = url;
+                commandRun.url = url;                               //URLを設定
                 for(int i = 0;i < command.size();i++){
                     commandRun.commandList.add(command.get(i));
                 }
-                System.out.println("command = " +command.size() + ":commandList = " + commandRun.commandList.size());
                 commandRun.run();
             }
 

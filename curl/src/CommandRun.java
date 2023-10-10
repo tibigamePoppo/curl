@@ -9,12 +9,19 @@ public class CommandRun {
         CommandRun commandRun = new CommandRun();
         if(commandList.size() == 0)
         {
-            curl.CurlHttp();
+            curl.CurlHttp(url);
         }
         else if(commandList.contains("-o")){
             String fileName = "";
             fileName = commandRun.getFileName(commandList);
-            curl.CurlOFile(fileName);
+            curl.CurlOFile(fileName,url);
+        }
+        else if(commandList.contains("-v")){
+            curl.CurlVHttp(url);
+        }
+        else if(commandList.contains("-X") &&commandList.contains("POST"))
+        {
+            curl.CurlXPost(url);
         }
     }
 
