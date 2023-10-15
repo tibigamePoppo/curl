@@ -25,12 +25,11 @@ public class CommandInput {
         }
 
         System.out.println("入力されたコマンドは「" + str + "」です");
-        if(!command.get(0).equals("curl"))
+        if(!command.contains("curl"))
         {
-            System.out.println("コマンドが入力されていません");
+            System.out.println("有効なコマンドが入力されていません");
         }
         else {  //コマンドが入力されているかの確認
-            System.out.println("コマンドが入力されました");
             command.remove("curl");
             String url = "";
             for (int i = 0;i < command.size();i++){

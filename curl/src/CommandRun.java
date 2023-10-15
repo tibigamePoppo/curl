@@ -11,29 +11,34 @@ public class CommandRun {
         {
             curl.CurlHttp(url);
         }
-        else if(commandList.contains("-o")){
+        if(commandList.contains("-o")){
             String fileName;
             fileName = commandRun.getFileName(commandList);
-            curl.CurlOFile(fileName,url);
+            curl.isOutPutFile = true;
+            curl.outPutFileName = fileName;
         }
-        else if(commandList.contains("-v")){
-            curl.CurlVHttp(url);
+        if(commandList.contains("-v")){
+            curl.isShowVersion = true;
         }
-        else if(commandList.contains("-d") && commandList.contains("-X") &&commandList.contains("POST"))
+        if(commandList.contains("-X") &&commandList.contains("POST"))
         {
-            String value = "";
-            for (String s : commandList) {
-                if (s.startsWith("\"key=")) {
-                    value = s.split("=")[1];
+            curl.methodType = requestMethod.POST;
+
+            if(commandList.contains("-d")){
+                String value = "";
+                for (String s : commandList) {
+                    if (s.startsWith("\"key=")) {
+                        value = s.split("=")[1];
+                    }
                 }
+                value = value.substring(0,value.length()-1);
+                curl.isOutPutPost = true;
+                curl.postText = value;
             }
-            value = value.substring(0,value.length()-1);
-            curl.CurlXPostD(url,value);
         }
-        else if(commandList.contains("-X") &&commandList.contains("POST"))
-        {
-            curl.CurlXPost(url);
-        }
+
+
+        curl.CurlHttp(url);
     }
 
     public  String getFileName(List<String> command)
