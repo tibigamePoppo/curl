@@ -5,26 +5,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * コマンドの入力に関するクラス
+ */
 public class CommandInput {
     public static void main(String[] args) {
 
-        InputStreamReader isr = new InputStreamReader(System.in);
-        BufferedReader br = new BufferedReader(isr);
+        InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
         System.out.println("キーボードから入力してください");
 
-        String str = null;
+        String input;
         List<String> command = new ArrayList<>();
         try {
-            str = br.readLine();
-            String[] tempArray = str.split(" ");
+            input = bufferedReader.readLine();
+            String[] tempArray = input.split(" ");
             command.addAll(Arrays.asList(tempArray));
-            br.close();
+            bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        System.out.println("入力されたコマンドは「" + str + "」です");
         if(!command.contains("curl"))
         {
             System.out.println("有効なコマンドが入力されていません");
@@ -44,9 +46,7 @@ public class CommandInput {
             else {
                 CommandRun commandRun = new CommandRun();
                 commandRun.url = url;                               //URLを設定
-                for(int i = 0;i < command.size();i++){
-                    commandRun.commandList.add(command.get(i));
-                }
+                commandRun.commandList.addAll(command);
                 commandRun.run();
             }
 

@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+/**
+ * テキストをファイルに出力するためのクラス
+ */
 public class PrintTextFile {
     public void PrintFile(List<String> Text , String fileName) {
         try {
