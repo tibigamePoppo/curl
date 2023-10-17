@@ -16,11 +16,11 @@ public class CommandInput {
 
         System.out.println("キーボードから入力してください");
 
-        String input;
+        String _input;
         List<String> command = new ArrayList<>();
         try {
-            input = bufferedReader.readLine();
-            String[] tempArray = input.split(" ");
+            _input = bufferedReader.readLine();
+            String[] tempArray = _input.split(" ");
             command.addAll(Arrays.asList(tempArray));
             bufferedReader.close();
         } catch (IOException e) {
